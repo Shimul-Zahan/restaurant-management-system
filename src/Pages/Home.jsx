@@ -4,6 +4,8 @@ import Title from '../SharedComponents/Title'
 import SwipperCarouser from '../SharedComponents/SwipperCarouser'
 import PopularMenus from '../Components/PopularMenus'
 import CommonBanner from '../SharedComponents/CommonBanner'
+import FeaturedFood from '../Components/FeaturedFood'
+import Recommendation from '../Components/Recommendation'
 
 const Home = () => {
     return (
@@ -21,6 +23,12 @@ const Home = () => {
             </div>
             <div>
                 <PopularMenus />
+            </div>
+            <div>
+                <Recommendation />
+            </div>
+            <div>
+                <FeaturedFood />
             </div>
         </div>
     )
