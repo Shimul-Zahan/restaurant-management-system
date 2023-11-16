@@ -6,6 +6,7 @@ import PopularMenus from '../Components/PopularMenus'
 import CommonBanner from '../SharedComponents/CommonBanner'
 import FeaturedFood from '../Components/FeaturedFood'
 import Recommendation from '../Components/Recommendation'
+import Testimonial from '../Components/Testimonial'
 
 const Home = () => {
     return (
@@ -29,6 +30,9 @@ const Home = () => {
             </div>
             <div>
                 <FeaturedFood />
+            </div>
+            <div>
+                <Testimonial />
             </div>
         </div>
     )
