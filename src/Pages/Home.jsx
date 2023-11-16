@@ -3,6 +3,7 @@ import Carouser from '../SharedComponents/Carouser'
 import Title from '../SharedComponents/Title'
 import SwipperCarouser from '../SharedComponents/SwipperCarouser'
 import PopularMenus from '../Components/PopularMenus'
+import CommonBanner from '../SharedComponents/CommonBanner'
 
 const Home = () => {
     return (
@@ -12,7 +13,10 @@ const Home = () => {
                 <Title title={"--- From 11:00am to 10:00pm---"} subTitle={"ORDER ONLINE"} />
             </div>
             <SwipperCarouser />
-            <div className='my-20'>
+            <div className='pt-20'>
+                <CommonBanner />
+            </div>
+            <div className='my-10'>
                 <Title title={"---Cheek it out---"} subTitle={"FROM OUR MENU"} />
             </div>
             <div>
