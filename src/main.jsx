@@ -5,6 +5,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import router from './MainComponents/Router.jsx';
+import { Helmet } from "react-helmet";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

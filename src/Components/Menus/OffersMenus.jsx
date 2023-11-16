@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import MenuCard from '../SharedComponents/MenuCard';
-import useMenus from '../Hooks/useMenus';
+import React from 'react'
+import useMenus from '../../Hooks/useMenus';
+import MenuCard from '../../SharedComponents/MenuCard';
 
-const PopularMenus = () => {
+const OffersMenus = ({menus, loading}) => {
 
-    const { menus, loading } = useMenus();
-    const popularProducts = menus.filter(product => product.category === 'popular');
     if (loading) {
         return <div>Loading</div>
     }
+
     return (
         <div className='grid grid-cols-1 md:grid-cols-2 gap-10 my-10'>
             {
-                popularProducts?.map(menu =>
+                menus?.map(menu =>
                     <MenuCard
                         key={menu?._id}
                         image={menu?.image}
@@ -25,4 +24,4 @@ const PopularMenus = () => {
     )
 }
 
-export default PopularMenus
+export default OffersMenus
