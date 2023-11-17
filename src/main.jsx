@@ -6,12 +6,15 @@ import {
 } from "react-router-dom";
 import router from './MainComponents/Router.jsx';
 import { Helmet } from "react-helmet";
+import AuthContext from './Context/AuthContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <div className='max-w-screen-xl mx-auto'>
-      <RouterProvider router={router} />
-    </div>
+    <AuthContext>
+      <div className='max-w-screen-xl mx-auto'>
+        <RouterProvider router={router} />
+      </div>
+    </AuthContext>
   </React.StrictMode>,
 )
 
