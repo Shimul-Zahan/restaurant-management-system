@@ -4,13 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import useCarts from '../../Hooks/useCarts';
 
 const Card = ({ item }) => {
 
-    const { _id, image, name, recipe } = item;
+    const { _id, image, name, recipe, price } = item;
     const { user } = useContext(MyAuthContext);
     const navigate = useNavigate();
     const axiosInstance = useAxiosSecure();
+    const {refetch} = useCarts();
 
     const addToCart = async (food) => {
         const email = user?.email;
@@ -19,7 +21,8 @@ const Card = ({ item }) => {
             userEmail: email,
             name,
             image,
-            recipe
+            recipe,
+            price
         }
         if (user && email) {
             const res = await axiosInstance.post('/cart', cartItem)
@@ -30,6 +33,7 @@ const Card = ({ item }) => {
                     text: "Your item successfully added to the cart!",
                     icon: "success"
                 });
+                refetch();
             }
         } else {
             Swal.fire({
