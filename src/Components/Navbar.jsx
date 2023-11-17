@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { MyAuthContext } from '../Context/AuthContext'
 import Swal from 'sweetalert2'
+import './navbar.css'
 
 const Navbar = () => {
 
@@ -41,34 +42,36 @@ const Navbar = () => {
                         </label>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             <li>
-                                <Link to='/'>HOME</Link>
+                                <NavLink to='/'>HOME</NavLink>
                             </li>
                             <li>
-                                <Link>CONTACT US</Link>
+                                <NavLink to='/contact'>CONTACT US</NavLink>
                             </li>
                             <li>
-                                <Link>DASHBOARD</Link>
+                                <NavLink to='/dashboard'>DASHBOARD</NavLink>
                             </li>
                             <li>
-                                <Link to='/menus'>OUR MENU</Link>
+                                <NavLink to='/menus'>OUR MENU</NavLink>
                             </li>
                             <li>
-                                <Link to='/shop/salad'>OUR SHOP</Link>
+                                <NavLink to='/shop/salad'>OUR SHOP</NavLink>
                             </li>
                             <li>
-                                <label tabIndex={0} className="btn btn-ghost bg-green-500 btn-circle">
-                                    <div className="indicator">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                                        <span className="badge badge-sm indicator-item">8</span>
-                                    </div>
-                                </label>
+                                <NavLink to='/cart'>
+                                    <label tabIndex={0} className="btn btn-ghost bg-green-500 btn-circle">
+                                        <div className="indicator">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                                            <span className="badge badge-sm indicator-item">8</span>
+                                        </div>
+                                    </label>
+                                </NavLink>
                             </li>
                             {
                                 user ? <li>
                                     <button onClick={handleLOgOut}>LOG OUT</button>
                                 </li> :
                                     <li>
-                                        <Link to='/login'>SIGN IN</Link>
+                                        <NavLink to='/login'>SIGN IN</NavLink>
                                     </li>
                             }
                         </ul>
@@ -78,34 +81,36 @@ const Navbar = () => {
                 <div className="navbar-end hidden lg:flex lg:items-center col-span-4 w-full">
                     <ul className="flex justify-center items-center gap-10 px-1">
                         <li>
-                            <Link to='/'>HOME</Link>
+                            <NavLink to='/'>HOME</NavLink>
                         </li>
                         <li>
-                            <Link>CONTACT US</Link>
+                            <NavLink to='/contact'>CONTACT US</NavLink>
                         </li>
                         <li>
-                            <Link>DASHBOARD</Link>
+                            <NavLink to='/dashboard'>DASHBOARD</NavLink>
                         </li>
                         <li>
-                            <Link to='/menus'>OUR MENU</Link>
+                            <NavLink to='/menus'>OUR MENU</NavLink>
                         </li>
                         <li>
-                            <Link to='/shop/salad'>OUR SHOP</Link>
+                            <NavLink to='/shop/salad'>OUR SHOP</NavLink>
                         </li>
                         <li>
-                            <label tabIndex={0} className="btn btn-ghost bg-green-500 hover:bg-green-500 btn-circle">
-                                <div className="indicator">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                                    <span className="badge badge-sm indicator-item bg-red-500 text-black text-base">8</span>
-                                </div>
-                            </label>
+                            <NavLink to='/cart'>
+                                <label tabIndex={0} className="btn btn-ghost bg-green-500 btn-circle">
+                                    <div className="indicator">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                                        <span className="badge badge-sm indicator-item">8</span>
+                                    </div>
+                                </label>
+                            </NavLink>
                         </li>
                         {
                             user ? <li>
                                 <button onClick={handleLOgOut}>LOG OUT</button>
                             </li> :
                                 <li>
-                                    <Link to='/login'>SIGN IN</Link>
+                                    <NavLink to='/login'>SIGN IN</NavLink>
                                 </li>
                         }
                         <li>
