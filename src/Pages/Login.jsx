@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useForm } from "react-hook-form";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { MyAuthContext } from '../Context/AuthContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Login = () => {
 
@@ -11,14 +12,23 @@ const Login = () => {
   const [disable, setDisable] = useState(true);
   const { register, handleSubmit, formState: { errors }, } = useForm()
   const navigate = useNavigate()
+  const location = useLocation();
 
   const onSubmit = (data) => {
     const email = data.email;
     const password = data.password;
     emailLogin(email, password)
       .then(res => {
-        console.log(res.user)
-        navigate('/')
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Sign in Successfull",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        {
+          location?.state ? `navigate(/${location?.state})` : "navigate('/)";
+        }
       })
       .catch(err => console.log(err))
   }
@@ -40,7 +50,13 @@ const Login = () => {
   const hanleGoogle = () => {
     googleLogin()
       .then(res => {
-        console.log(res.user)
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Sign in Successfull",
+          showConfirmButton: false,
+          timer: 1500
+        });
         navigate('/')
       })
       .catch(err => console.log(err))

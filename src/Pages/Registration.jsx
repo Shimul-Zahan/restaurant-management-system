@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { MyAuthContext } from '../Context/AuthContext';
 import { updateProfile } from 'firebase/auth';
+import Swal from 'sweetalert2';
 
 const Registration = () => {
 
@@ -27,7 +28,13 @@ const Registration = () => {
                     photoURL: photoURL,
                 })
                     .then(res => {
-                        console.log(user)
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Registration Successfull",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                         navigate('/');
                     })
                     .catch(err => console.log(err))
@@ -38,7 +45,13 @@ const Registration = () => {
     const hanleGoogle = () => {
         googleLogin()
             .then(res => {
-                console.log(res.user)
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Registration Successfull",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
                 navigate('/')
             })
             .catch(err => console.log(err))

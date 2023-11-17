@@ -1,15 +1,34 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { MyAuthContext } from '../Context/AuthContext'
+import Swal from 'sweetalert2'
 
 const Navbar = () => {
 
     const { user, logOut } = useContext(MyAuthContext);
 
     const handleLOgOut = () => {
-        logOut()
-            .then(res => console.log('succeefully logOut'))
-            .catch(err => console.log(err))
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You want to log out? ",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, log out!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                logOut()
+                    .then(res => console.log('succeefully logOut'))
+                    .catch(err => console.log(err))
+                
+                Swal.fire({
+                    title: "Log Out!",
+                    text: "Log out successfull",
+                    icon: "success"
+                });
+            }
+        });
     }
 
     return (
