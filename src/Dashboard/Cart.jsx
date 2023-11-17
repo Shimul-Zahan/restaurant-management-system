@@ -7,9 +7,13 @@ import Swal from 'sweetalert2';
 
 const Cart = () => {
 
-    const { data, refetch } = useCarts();
-    const axiosInstance =  useAxiosSecure()
-    const totalPrice = data.reduce((accumulator, currentValue) => accumulator + currentValue.price, 0)
+    const { data, refetch, isLoading } = useCarts();
+    const axiosInstance = useAxiosSecure()
+    const totalPrice = data?.reduce((accumulator, currentValue) => accumulator + currentValue.price, 0)
+
+    if (isLoading) {
+        return <div>Loading....</div>
+    }
 
     const deleteItem = id => {
         Swal.fire({
@@ -63,12 +67,12 @@ const Cart = () => {
                         <tbody className='text-lg'>
                             {
                                 data?.map((item, index) => <tr>
-                                    <th>{ index+1 }</th>
+                                    <th>{index + 1}</th>
                                     <td>
                                         <div className="flex items-center gap-3">
                                             <div className="avatar">
                                                 <div className="mask mask-squircle w-12 h-12">
-                                                    <img src={ item?.image } alt="Avatar Tailwind CSS Component" />
+                                                    <img src={item?.image} alt="Avatar Tailwind CSS Component" />
                                                 </div>
                                             </div>
                                         </div>
@@ -78,7 +82,7 @@ const Cart = () => {
                                     </td>
                                     <td className='font-bold'>{item?.price}</td>
                                     <th>
-                                        <button onClick={()=> deleteItem(item._id)} className="btn btn-lg bg-red-500">
+                                        <button onClick={() => deleteItem(item._id)} className="btn btn-lg bg-red-500">
                                             <RiDeleteBin6Line className='text-2xl text-white' />
                                         </button>
                                     </th>

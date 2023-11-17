@@ -5,12 +5,14 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 import { MyAuthContext } from '../Context/AuthContext';
 import { updateProfile } from 'firebase/auth';
 import Swal from 'sweetalert2';
+import useAxiosPublic from '../Hooks/useAxiosPublic';
 
 const Registration = () => {
 
-    const { createUser, emailLogin } = useContext(MyAuthContext);
+    const { createUser, googleLogin } = useContext(MyAuthContext);
     const { register, handleSubmit, formState: { errors }, } = useForm()
     const navigate = useNavigate();
+    const axiosInstance = useAxiosPublic();
 
     const onSubmit = (data) => {
         console.log(data);
@@ -22,20 +24,30 @@ const Registration = () => {
         createUser(email, password)
             .then(res => {
                 const user = res.user;
-                console.log(user)
                 updateProfile((user), {
                     displayName: name,
                     photoURL: photoURL,
                 })
                     .then(res => {
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: "Registration Successfull",
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                        navigate('/');
+                        const userInfo = {
+                            name: user?.displayName,
+                            email: user?.email,
+                            image: user?.photoURL
+                        }
+                        // console.log(user.displayName, user.email)
+                        axiosInstance.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    Swal.fire({
+                                        position: "top-end",
+                                        icon: "success",
+                                        title: "Registration Successfull",
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    navigate('/');
+                                }
+                            })
                     })
                     .catch(err => console.log(err))
             })
@@ -45,6 +57,24 @@ const Registration = () => {
     const hanleGoogle = () => {
         googleLogin()
             .then(res => {
+                const userInfo = {
+                    name: res.user?.displayName,
+                    email: res.user?.email,
+                    image: res.user?.photoURL,
+                }
+                axiosInstance.post('/users', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Registration Successfull",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            navigate('/');
+                        }
+                    })
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -52,7 +82,8 @@ const Registration = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                navigate('/')
+                navigate('/');
+
             })
             .catch(err => console.log(err))
     }
