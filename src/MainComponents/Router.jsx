@@ -10,6 +10,7 @@ import Registration from "../Pages/Registration";
 import Dashboard from "../MainLayout/Dashboard";
 import Cart from "../Dashboard/Cart";
 import Users from "../Dashboard/Users";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
     {
@@ -55,7 +56,7 @@ const router = createBrowserRouter([
             // admin route
             {
                 path: 'all-users',
-                element: <Users />
+                element: <AdminRoute><Users /></AdminRoute>
             }
         ]
     }

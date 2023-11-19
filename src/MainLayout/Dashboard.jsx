@@ -12,10 +12,16 @@ import { FaShopify } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { FaUsersLine } from "react-icons/fa6";
 import { ImSpoonKnife } from "react-icons/im";
+import useAdmin from '../Hooks/useAdmin';
 
 const Dashboard = () => {
 
-    const isAdmin = true;
+    const { data, isLoading } = useAdmin();
+    const isAdmin = data;
+
+    if (isLoading) {
+        return <div>Dashboard is Loading...</div>
+    }
 
     return (
         <div className='flex justify-start gap-10'>

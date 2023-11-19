@@ -11,12 +11,12 @@ const ShopTabs = () => {
     const { category } = useParams();
     const initialIndex = categories.indexOf(category);
     const [tabIndex, setTabIndex] = useState(initialIndex);
-    const { menus, loading } = useMenus();
-    const deserts = menus.filter(desert => desert.category === 'dessert');
-    const pizzas = menus.filter(pizza => pizza.category === 'pizza');
-    const salads = menus.filter(salad => salad.category === 'salad');
-    const soups = menus.filter(soup => soup.category === 'soup');
-    const drinks = menus.filter(drink => drink.category === 'drinks');
+    const { data, refetch, isLoading } = useMenus();
+    const deserts = data?.filter(desert => desert.category === 'dessert');
+    const pizzas = data?.filter(pizza => pizza.category === 'pizza');
+    const salads = data?.filter(salad => salad.category === 'salad');
+    const soups = data?.filter(soup => soup.category === 'soup');
+    const drinks = data?.filter(drink => drink.category === 'drinks');
 
     return (
         <div className='mb-10'>

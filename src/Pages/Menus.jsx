@@ -15,12 +15,17 @@ import { Link } from 'react-router-dom'
 
 const Menus = () => {
 
-    const { menus, loading } = useMenus();
-    const offers = menus.filter(offer => offer.category === 'offered');
-    const deserts = menus.filter(desert => desert.category === 'dessert');
-    const pizzas = menus.filter(pizza => pizza.category === 'pizza');
-    const salads = menus.filter(salad => salad.category === 'salad');
-    const soups = menus.filter(soup => soup.category === 'soup');
+    const { data, refetch, isLoading } = useMenus();
+    const offers = data?.filter(offer => offer.category === 'offered');
+    const deserts = data?.filter(desert => desert.category === 'dessert');
+    const pizzas = data?.filter(pizza => pizza.category === 'pizza');
+    const salads = data?.filter(salad => salad.category === 'salad');
+    const soups = data?.filter(soup => soup.category === 'soup');
+    console.log(data, offers, deserts?.category)
+
+    if (isLoading) {
+        return <div>Loadings...</div>
+    }
 
     return (
         <div>
@@ -30,34 +35,34 @@ const Menus = () => {
             <Banner img={menuBanner} title={'OUR MENUS'} submenu={'Would you like to try a dish?'} />
             <Title title={"---Don't miss---"} subTitle={"TODAY'S OFFER"} />
             <div>
-                <OffersMenus menus={offers} loading={loading} />
+                <OffersMenus menus={offers} loading={isLoading} />
             </div>
             <div className='text-white'>
                 <CommonBanner img={desertBanner} title={'DESERT'} />
             </div>
             <div>
-                <OffersMenus menus={deserts} loading={loading} />
+                <OffersMenus menus={deserts} loading={isLoading} />
                 <Link to={`/shop/${deserts[0]?.category}`}><OrderButton /></Link>
             </div>
             <div className='text-white'>
                 <CommonBanner img={desertBanner} title={'PIZZA'} />
             </div>
             <div>
-                <OffersMenus menus={pizzas} loading={loading} />
+                <OffersMenus menus={pizzas} loading={isLoading} />
                 <Link to={`/shop/${pizzas[0]?.category}`}><OrderButton /></Link>
             </div>
             <div className='text-white'>
                 <CommonBanner img={saladBanner} title={'SALADS'} />
             </div>
             <div>
-                <OffersMenus menus={salads} loading={loading} />
+                <OffersMenus menus={salads} loading={isLoading} />
                 <Link to={`/shop/${salads[0]?.category}`}><OrderButton /></Link>
             </div>
             <div className='text-white'>
                 <CommonBanner img={soupsBanner} title={'SOUPS'} />
             </div>
             <div>
-                <OffersMenus menus={soups} loading={loading} />
+                <OffersMenus menus={soups} loading={isLoading} />
                 <Link to={`/shop/${soups[0]?.category}`}><OrderButton /></Link>
             </div>
         </div>

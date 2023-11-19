@@ -86,7 +86,7 @@ const Users = () => {
                         </thead>
                         <tbody className='text-lg'>
                             {
-                                data?.map((item, index) => <tr>
+                                data?.map((item, index) => <tr key={index}>
                                     <th>{index + 1}</th>
                                     <td>
                                         <h1 className='font-bold'>{item?.name}</h1>
