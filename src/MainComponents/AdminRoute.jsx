@@ -22,7 +22,7 @@ const AdminRoute = ({children}) => {
         return children;
     }
 
-    <Navigate state={location.pathname} to='/'></Navigate>
+    <Navigate state={location} to='/'></Navigate>
 }
 
 export default AdminRoute
