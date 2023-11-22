@@ -4,6 +4,7 @@ import useCarts from '../Hooks/useCarts'
 import { RiDeleteBin6Line } from "react-icons/ri";
 import useAxiosSecure from '../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
 
@@ -50,7 +51,9 @@ const Cart = () => {
                 <div className='flex justify-between items-center mb-5'>
                     <h1 className='text-3xl font-bold'>TOTAL ORDERS: {data?.length}</h1>
                     <h1 className='text-3xl font-bold'>TOTAL PRICES: ${totalPrice}</h1>
-                    <button className='btn bg-[#D1A054]'>PAY</button>
+                    <Link to='/dashboard/payment'>
+                        <button className='btn bg-[#D1A054]'>PAY</button>
+                    </Link>
                 </div>
                 <div className="overflow-x-auto">
                     <table className="table">
